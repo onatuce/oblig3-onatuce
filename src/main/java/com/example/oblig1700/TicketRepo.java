@@ -27,7 +27,6 @@ public class TicketRepo {
         }
     }
 
-
     public int lagreTicket(Ticket innTicket) {
         String sql = "INSERT INTO ticket (ID, film, antall, fornavn, etternavn, telefon, epost) VALUES (?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql, innTicket.getID(), innTicket.getFilm(), innTicket.getAntall(),

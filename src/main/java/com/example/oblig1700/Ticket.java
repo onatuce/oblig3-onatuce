@@ -17,8 +17,6 @@ public class Ticket {
     private String telefon;
     private String epost;
 
-    // Constructors, getters, setters, and toString method...
-
     public Ticket() {}
     public Ticket(int ID, String film, int antall, String fornavn, String etternavn, String telefon, String epost) {
         this.ID = ID;
@@ -29,7 +27,6 @@ public class Ticket {
         this.telefon = telefon;
         this.epost = epost;
     }
-
     public String getFilm() {
         return film;
     }
