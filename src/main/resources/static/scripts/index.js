@@ -3,7 +3,6 @@ $(function(){
 });
 
 let tickets = [];
-
 function fetchAllTickets() {
     $.get("/hentTicket", function(data) {
         tickets = data;
@@ -24,11 +23,14 @@ function renderTickets(tickets) {
         "</tr>";
 
     tickets.forEach((ticket) => {
+        console.log(ticket);
         ticketTable += "<tr>";
         Object.values(ticket).forEach((value) => {
             ticketTable += "<td>" + value + "</td>";
+            console.log(typeof ticket.ID)
         });
-        ticketTable += "<td><button class='btn btn-danger' onclick='deleteTicket(" + ticket.ID + ")'>Slett</button></td>";
+        console.log(ticket.ID);
+        ticketTable += `<td><button class='btn btn-danger' onclick='deleteTicket(${ticket.ID})'>Slett</button></td>`;
         ticketTable += "</tr>";
     });
 
@@ -38,7 +40,7 @@ function renderTickets(tickets) {
 function deleteAlle() {
     $.ajax({
         url: '/deleteAll',
-        type: 'GET',
+        type: 'DELETE',
         success: function (data) {
             console.log("Success:", data);
             fetchAllTickets();
@@ -62,7 +64,10 @@ function deleteTicket(ticketID) {
         error: function(xhr, status, error) {
             console.error("Error:", error);
             alert("wrong!");
+
         }
+
+
     });
 }
 $("#bestillingsskjema").submit(function(event) {
@@ -75,6 +80,28 @@ $("#bestillingsskjema").submit(function(event) {
         telefon: $("#telefon").val(),
         epost: $("#epost").val(),
     };
+
+    // Validering- sjekker inputtet og gir tilbakemelding hvis det trengs
+
+    if (!formData.film||!formData.antall|| !formData.fornavn|| !formData.etternavn||!formData.telefon ||!formData.epost) {
+        alert("Required fields.");
+        return;
+    }
+
+    // Regex telefon- sjekker inputtet og gir tilbakemelding hvis det trengs
+
+    let tlfRegEx = /^[0-9]{8}$/;
+    if (!tlfRegEx.test(formData.telefon)) {
+        alert("Enter a valid phone number.");
+        return;
+    }
+    // Regex epost- sjekker inputtet og gir tilbakemelding hvis det trengs
+
+    let epostRegEx = /^[A-Za-z._\-0-9]*[@][A-Za-z]*[.][a-z]{2,4}$/;
+    if (!epostRegEx.test(formData.epost)) {
+        alert("Enter a valid email.");
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "/lagreTicket",

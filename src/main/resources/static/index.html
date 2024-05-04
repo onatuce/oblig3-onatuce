@@ -9,7 +9,7 @@
 <h2>Bestilling av kinobilletter</h2>
 <form id="bestillingsskjema">
     <label for="film">Velg film:</label>
-    <select id="film" required>
+    <select id="film" >
         <option value="">Velg film</option>
         <option value="film1">Film 1</option>
         <option value="film2">Film2</option>
@@ -17,13 +17,13 @@
     </select>
     <br><br>
     <label for="antall">Antall billetter:</label>
-    <input type="number" id="antall" min="1" required>
+    <input type="number" id="antall" min="1">
     <br><br>
     <label for="fornavn">Fornavn:</label>
-    <input type="text" id="fornavn" required>
+    <input type="text" id="fornavn">
     <br><br>
     <label for="etternavn">Etternavn:</label>
-    <input type="text" id="etternavn" required>
+    <input type="text" id="etternavn" >
     <br><br>
     <label for="telefon">Telefonnummer:</label>
     <input type="tel" id="telefon"  required>
@@ -32,7 +32,7 @@
     <input id="epost" required>
     <br><br>
     <button type="submit" id="purchase">Kjøp billett</button>
-    <button type="button" id="deleteAll" onclick="deleteTicket()">Slett alle billetter</button>
+    <button type="button" id="deleteAll" onclick="deleteAlle()">Slett alle billetter</button>
 </form>
 
 <h2>Kjøpte billetter</h2>

@@ -28,11 +28,12 @@ public class TicketRepo {
     }
 
     public int lagreTicket(Ticket innTicket) {
-        String sql = "INSERT INTO ticket (ID, film, antall, fornavn, etternavn, telefon, epost) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        return jdbcTemplate.update(sql, innTicket.getID(), innTicket.getFilm(), innTicket.getAntall(),
+        String sql = "INSERT INTO ticket (film, antall, fornavn, etternavn, telefon, epost) VALUES (?, ?, ?, ?, ?, ?)";
+        return jdbcTemplate.update(sql, innTicket.getFilm(), innTicket.getAntall(),
                 innTicket.getFornavn(), innTicket.getEtternavn(), innTicket.getTelefon(),
                 innTicket.getEpost());
     }
+
     public List<Ticket> hentTicket() {
         String sql = "SELECT * FROM ticket";
         List<Ticket>alleKunder=jdbcTemplate.query(sql, new BeanPropertyRowMapper(Ticket.class));

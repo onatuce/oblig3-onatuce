@@ -26,8 +26,9 @@ public class ControllerKunde {
         ticketRepository.deleteAll();
     }
 
-    @DeleteMapping("/deleteEntry")
-    public void deleteTicket(@RequestBody int id) {
+    @DeleteMapping("/deleteEntry/{id}")
+    public void deleteTicket(@PathVariable int id) {
+        System.out.println("Slettet en");
         ticketRepository.deleteTicket(id);
         System.out.println("Slettet entry: " + id);
     }
